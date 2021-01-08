@@ -1,6 +1,5 @@
 package shooting;
 
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
@@ -17,7 +16,7 @@ public class Cursor extends ImageView {
 
     public Cursor(){
         super(cursorImage);
-        timeline = new Timeline(new KeyFrame(Duration.millis(100), event->{run();}));
+        timeline = new Timeline(new KeyFrame(Duration.millis(50), event->{run();}));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }

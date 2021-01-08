@@ -16,6 +16,7 @@ import java.nio.file.Paths;
 public class StartScreen extends Application {
     Stage startScreen;
     Stage main;
+    Stage howToPlayScreen;
     Pane root;
 
     public static int selectNum;
@@ -32,7 +33,7 @@ public class StartScreen extends Application {
     public static void main (String[] args){ launch();}
 
     //-------start-------------
-    public void start(Stage stage)throws Exception{
+    public void start(Stage stage){
 
         startScreen =stage;
         stage.setTitle("シューティングゲーム(仮)");
@@ -67,7 +68,7 @@ public class StartScreen extends Application {
 
         Scene scene = new Scene(root);
 
-        scene.setOnKeyPressed(event -> keyPress(event));
+        scene.setOnKeyPressed(this::keyPress);
 
         stage.setScene(scene);
 
@@ -87,16 +88,13 @@ public class StartScreen extends Application {
         if(event.getCode()== KeyCode.SPACE||event.getCode() == KeyCode.Z||event.getCode()==KeyCode.ENTER){
             switch (selectNum){
                 case 0:
-                    /*-----------------
-                         GameStart!!
-                     -----------------*/
+                    //GameStart!!
                     startScreen.close();
                     main = new Main(this.startScreen);
                     break;
-                case 1:
-                    /*----------------
-                     How to play 表示
-                    ----------------*/
+                case 1: //遊び方
+                    startScreen.close();
+                    howToPlayScreen = new HowToPlayScreen(this.startScreen);
                     break;
                 case 2:
                     /*----------------
@@ -104,15 +102,12 @@ public class StartScreen extends Application {
                     ----------------*/
                     break;
                 case 3:
-                    /*---------------
-                         ゲーム終了
-                     ---------------*/
+                    //ゲーム終了
                     System.exit(0);
                     break;
             }
         }
     }
-
 
     public static int getSelectNum(){
         return selectNum;
