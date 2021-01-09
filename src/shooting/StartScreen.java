@@ -35,10 +35,11 @@ public class StartScreen extends Application {
     //-------start-------------
     public void start(Stage stage){
 
+
         startScreen =stage;
-        stage.setTitle("シューティングゲーム(仮)");
-        stage.setWidth(1080);
-        stage.setHeight(720);
+        startScreen.setTitle("シューティングゲーム(仮)");
+        startScreen.setWidth(900);
+        startScreen.setHeight(720);
 
         root = new Pane();
         ImageView startLogo = new ImageView(startLogoImage);
@@ -70,12 +71,12 @@ public class StartScreen extends Application {
 
         scene.setOnKeyPressed(this::keyPress);
 
-        stage.setScene(scene);
+        startScreen.setScene(scene);
 
         //×ボタンで、プログラム終了
-        stage.setOnCloseRequest(event -> System.exit(0));
+        startScreen.setOnCloseRequest(event -> System.exit(0));
 
-        stage.show();
+        startScreen.show();
     }
     public void keyPress(KeyEvent event) {
         if (event.getCode() == KeyCode.UP&&selectNum>0) {
@@ -112,5 +113,7 @@ public class StartScreen extends Application {
     public static int getSelectNum(){
         return selectNum;
     }
+
+
 }
 

@@ -1,12 +1,15 @@
 package shooting;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.nio.file.Paths;
@@ -17,12 +20,14 @@ public class Main extends Stage {
 
     static boolean isGetKeyCode[] = new boolean[6];
     public static Player player = new Player();
+    public Label lb;
     public static Stage startScreen;
     public static Pane root;
     public static int screenMinX =0;
     public static int screenMinY=0;
-    public static int screenMaxX =1050;
+    public static int screenMaxX =870;
     public static int screenMaxY=660;
+    public int score=0;
 
 
     public Main(Stage stage)  {
@@ -30,13 +35,20 @@ public class Main extends Stage {
 
         //Stage設定、タイトル、大きさ
         stage.setTitle("シューティングゲーム(仮)");
-        stage.setWidth(1080);
+        stage.setWidth(900);
         stage.setHeight(720);
 
         player = new Player();
 
+        lb = new Label(String.valueOf(score));
+        lb.setFont(Font.font(30));
+        lb.setTextFill(Color.WHITE);
+        lb.setTranslateX(20);
+        lb.setTranslateY(0);
+
         root = new Pane();
-        root.getChildren().addAll(player);
+        root.getChildren().addAll(player,lb);
+
 
         //背景
         BackgroundImage bimg = new BackgroundImage(backgroundImg1, null, null, null, null);
@@ -63,6 +75,7 @@ public class Main extends Stage {
         if (event.getCode() == KeyCode.LEFT) isGetKeyCode[3] = true;
         if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.Z) isGetKeyCode[4] = true;
         if (event.getCode() == KeyCode.SHIFT) isGetKeyCode[5] = true;
+        if (event.getCode() == KeyCode.A)addScore(100);
 
     }
     public void keyRelease(KeyEvent event){
@@ -82,5 +95,10 @@ public class Main extends Stage {
     public static void shot(){
         Bullet bullet = new Bullet(player.x, player.y);
         root.getChildren().add(bullet);
+    }
+
+    void addScore(int addScore){
+        score+=addScore;
+        lb.setText(String.valueOf(score));
     }
 }
