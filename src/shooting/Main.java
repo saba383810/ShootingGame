@@ -1,8 +1,10 @@
 package shooting;
 
+import javafx.geometry.Bounds;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
@@ -13,21 +15,23 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class Main extends Stage {
 
     static Image backgroundImg1 = new Image(Paths.get("InvadersImage/Stage1Background.jpg").toUri().toString());
 
-    static boolean isGetKeyCode[] = new boolean[6];
+    static boolean[] isGetKeyCode = new boolean[6];
     public static Player player = new Player();
-    public Label lb;
+    public static Label lb;
     public static Stage startScreen;
     public static Pane root;
     public static int screenMinX =0;
     public static int screenMinY=0;
     public static int screenMaxX =870;
     public static int screenMaxY=660;
-    public int score=0;
+    public static int score=0;
+    public static ArrayList<ImageView> bulletList = new ArrayList<>();
 
 
     public Main(Stage stage)  {
@@ -39,6 +43,7 @@ public class Main extends Stage {
         stage.setHeight(720);
 
         player = new Player();
+        EnemyManagement eneMane=new EnemyManagement();
 
         lb = new Label(String.valueOf(score));
         lb.setFont(Font.font(30));
@@ -49,15 +54,14 @@ public class Main extends Stage {
         root = new Pane();
         root.getChildren().addAll(player,lb);
 
-
         //背景
         BackgroundImage bimg = new BackgroundImage(backgroundImg1, null, null, null, null);
         Background bg1 = new Background(bimg);
         root.setBackground(bg1);
 
         Scene scene = new Scene(root);
-        scene.setOnKeyPressed(event -> keyPress(event));
-        scene.setOnKeyReleased(event->keyRelease(event));
+        scene.setOnKeyPressed(this::keyPress);
+        scene.setOnKeyReleased(this::keyRelease);
 
         stage.setScene(scene);
 
@@ -91,14 +95,21 @@ public class Main extends Stage {
     //現在trueになってるキーコードをreturn
     public static boolean[] getKeyCodePress(){ return isGetKeyCode; }
 
-
+    //キャラクターのたま表示
     public static void shot(){
         Bullet bullet = new Bullet(player.x, player.y);
         root.getChildren().add(bullet);
+        bulletList.add(bullet);
     }
-
-    void addScore(int addScore){
+    //敵のアクション番号に応じて敵を生成
+    public static void addEnemy(int actNum){
+        Enemy enemy = new Enemy(actNum);
+        root.getChildren().add(enemy);
+    }
+    //取得したスコア分スコアを増加
+    public static void addScore(int addScore){
         score+=addScore;
         lb.setText(String.valueOf(score));
     }
+    public static ArrayList getBulletList(){return bulletList;}
 }

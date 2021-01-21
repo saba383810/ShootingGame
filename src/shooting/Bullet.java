@@ -28,7 +28,7 @@ public class Bullet extends Subject {
 
     public void run(){
         if (y>0) {
-            setTranslateY(y -= 5);
+            setTranslateY(y -= 6);
             setImage(bulletImage);
         }
         else setImage(null);

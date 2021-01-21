@@ -43,7 +43,7 @@ public class StartScreen extends Application {
 
         root = new Pane();
         ImageView startLogo = new ImageView(startLogoImage);
-        startLogo.setTranslateX(210);
+        startLogo.setTranslateX(130);
         startLogo.setTranslateY(80);
         ImageView start = new ImageView(startImage);
         start.setTranslateX(110);

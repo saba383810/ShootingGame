@@ -19,7 +19,7 @@ public class Main extends Application {
     Taiyou sun;
     Bee bee;
     static Image backgroundImg = new Image(Paths.get("sampleGameImages/background.png").toUri().toString());
-    static boolean isGetKeyCode[] = new boolean[5];
+    static boolean[] isGetKeyCode = new boolean[5];
      /*
         --isGetKeyCode---
         0:上やじるし
@@ -50,8 +50,8 @@ public class Main extends Application {
 
         Scene scene = new Scene(root);
 
-        scene.setOnKeyPressed(event -> keyPress(event));
-        scene.setOnKeyReleased(event->keyRelease(event));
+        scene.setOnKeyPressed(this::keyPress);
+        scene.setOnKeyReleased(this::keyRelease);
 
         stage.setScene(scene);
         //×ボタンで、プログラム終了
