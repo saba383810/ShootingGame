@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class Main extends Stage {
 
     static Image backgroundImg1 = new Image(Paths.get("InvadersImage/Stage1Background.jpg").toUri().toString());
-
+    static Image stageUIImg= new Image(Paths.get("InvadersImage/stageUI1.png").toUri().toString());
     static boolean[] isGetKeyCode = new boolean[6];
     public static Player player = new Player();
     public static Label lb;
@@ -28,10 +28,12 @@ public class Main extends Stage {
     public static Pane root;
     public static int screenMinX =0;
     public static int screenMinY=0;
-    public static int screenMaxX =870;
+    public static int screenMaxX =590;
     public static int screenMaxY=660;
     public static int score=0;
     public static ArrayList<ImageView> bulletList = new ArrayList<>();
+
+    ImageView stageUI;
 
 
     public Main(Stage stage)  {
@@ -42,17 +44,23 @@ public class Main extends Stage {
         stage.setWidth(900);
         stage.setHeight(720);
 
+        stageUI = new ImageView(stageUIImg);
+        stageUI.setTranslateX(620);
+        stageUI.setTranslateY(0);
+
         player = new Player();
         EnemyManagement eneMane=new EnemyManagement();
 
         lb = new Label(String.valueOf(score));
         lb.setFont(Font.font(30));
+        Color c = Color.web("bed7de",1.0);
+        lb.setTextFill(c);
         lb.setTextFill(Color.WHITE);
-        lb.setTranslateX(20);
-        lb.setTranslateY(0);
+        lb.setTranslateX(680);
+        lb.setTranslateY(100);
 
         root = new Pane();
-        root.getChildren().addAll(player,lb);
+        root.getChildren().addAll(player,stageUI,lb);
 
         //背景
         BackgroundImage bimg = new BackgroundImage(backgroundImg1, null, null, null, null);

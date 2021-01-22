@@ -15,6 +15,8 @@ public class Player extends ImageView {
     static Image playerImageLeft = new Image(Paths.get("InvadersImage/PlayerLeft3132.png").toUri().toString());
     public static long shotTime=0;
     static int canBulletShotTime =100;
+    static PlayClip stage1BGM = new PlayClip("InvadersMusic/stage1.wav");
+    static PlayClip stage1BossBGM = new PlayClip("Invaders/stage1Boss.wav");
     Timeline timeline;
     boolean[] isGetKeyCode;
 
@@ -26,7 +28,9 @@ public class Player extends ImageView {
         setTranslateY(y);
         setTranslateX(x);
 
-        timeline = new Timeline(new KeyFrame(Duration.millis(30), event-> run()));
+        stage1BGM.play();
+
+        timeline = new Timeline(new KeyFrame(Duration.millis(20), event-> run()));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }
@@ -37,20 +41,20 @@ public class Player extends ImageView {
 
         //移動(Shiftが押されていたら低速移動モード。)
         if(isGetKeyCode[0] && Main.screenMinY<y) {
-            if(isGetKeyCode[5])y-=6;
-            else y-=9;
+            if(isGetKeyCode[5])y-=4;
+            else y-=8;
         }
         if(isGetKeyCode[1] && Main.screenMaxY>y) {
-            if (isGetKeyCode[5]) y += 6;
-            else y += 9;
+            if (isGetKeyCode[5]) y += 4;
+            else y += 8;
         }
         if(isGetKeyCode[2] && Main.screenMaxX>x) {
-            if (isGetKeyCode[5]) x += 6;
-            else x += 9;
+            if (isGetKeyCode[5]) x += 4;
+            else x += 8;
         }
         if(isGetKeyCode[3] && Main.screenMinX<x) {
-            if (isGetKeyCode[5]) x -= 6;
-            else x -= 9;
+            if (isGetKeyCode[5]) x -= 4;
+            else x -= 8;
         }
 
         //画像処理

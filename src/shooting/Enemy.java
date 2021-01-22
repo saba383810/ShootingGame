@@ -28,10 +28,11 @@ public class Enemy extends ImageView {
         //行動パターンに伴った初期位置を指定
 
         if(actNum==0){
-            x=100;
+            x=50;
             y=0;
         }else if(actNum==1){
-
+            x=500;
+            y=0;
         }else{
 
         }
@@ -46,23 +47,22 @@ public class Enemy extends ImageView {
         timeline.play();
     }
     void run() {
-        if (enemyHP <= 1) {
-            if (x < Main.screenMaxX && x > Main.screenMinX && y < Main.screenMaxX) {
-                switch (actNum) {
-                    case 0:
-                        y += 5;
-                        x += 2;
-                        break;
-                    case 1:
-                        y+=5;
-                        break;
-                    case 2:
-                        break;
-                }
-
-                setTranslateX(x);
-                setTranslateY(y);
+        if (x < Main.screenMaxX && x > Main.screenMinX && y < Main.screenMaxY) {
+            switch (actNum) {
+                case 0:
+                    y += 5;
+                    x += 2;
+                    break;
+                case 1:
+                    y+=5;
+                    x-=2;
+                    break;
+                case 2:
+                    break;
             }
+
+            setTranslateX(x);
+            setTranslateY(y);
             //enemy当たり判定取得。
             enemyBounds = getBoundsInParent();
             //全てのたまを取得
@@ -70,11 +70,13 @@ public class Enemy extends ImageView {
             //現在のenemyと全てのbulletのどれかがぶつかっていれば、得点を増やし、画像をnullにする。
             for (Bullet bullet : bulletList) {
                 if (enemyBounds.intersects(bullet.getBoundsInParent())) {
-                    Main.addScore(100);
+                    Main.addScore(350);
                     setImage(null);
                     break;
                 }
             }
+        }else{
+            setImage(null);
         }
     }
 }

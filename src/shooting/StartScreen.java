@@ -27,10 +27,10 @@ public class StartScreen extends Application {
     static Image howToPlayImage = new Image(Paths.get("InvadersImage/HowToPlay.png").toUri().toString());
     static Image scoreImage = new Image(Paths.get("InvadersImage/Score.png").toUri().toString());
     static Image exitImage = new Image(Paths.get("InvadersImage/Exit.png").toUri().toString());
-
+    //static PlayClip pc = new PlayClip(Paths.get("InvadersMusic/startScene.wav").toUri().toString());
 
     //--------main----------
-    public static void main (String[] args){ launch();}
+    public static void main (String[] args){ launch(); }
 
     //-------start-------------
     public void start(Stage stage){
@@ -75,7 +75,7 @@ public class StartScreen extends Application {
 
         //×ボタンで、プログラム終了
         startScreen.setOnCloseRequest(event -> System.exit(0));
-
+        //pc.play();
         startScreen.show();
     }
     public void keyPress(KeyEvent event) {
@@ -109,11 +109,8 @@ public class StartScreen extends Application {
             }
         }
     }
-
     public static int getSelectNum(){
         return selectNum;
     }
-
-
 }
 

@@ -11,6 +11,8 @@ public class Bullet extends Subject {
     int x;
     int y;
     static Image bulletImage = new Image(Paths.get("InvadersImage/bullet1.png").toUri().toString());
+    static PlayClip pc = new PlayClip("InvadersMusic/shotSE.wav");
+
     Timeline timeline;
 
     public Bullet(int playerX ,int playerY) {
@@ -20,7 +22,8 @@ public class Bullet extends Subject {
         y=playerY;
         setTranslateX(x);
         setTranslateY(y);
-
+        //効果音: 重いから一旦コメント
+        //pc.play();
         timeline = new Timeline(new KeyFrame(Duration.millis(10), event->{run();}));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
