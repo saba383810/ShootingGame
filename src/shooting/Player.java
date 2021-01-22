@@ -68,7 +68,7 @@ public class Player extends ImageView {
 
         //玉発射
         if (isGetKeyCode[4] && System.currentTimeMillis()-shotTime>canBulletShotTime) {
-            Main.shot();
+            Main.shot(x,y,"Player");
             shotTime = System.currentTimeMillis();
         }
     }

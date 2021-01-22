@@ -104,10 +104,14 @@ public class Main extends Stage {
     public static boolean[] getKeyCodePress(){ return isGetKeyCode; }
 
     //キャラクターのたま表示
-    public static void shot(){
-        Bullet bullet = new Bullet(player.x, player.y);
+    public static void shot(int charaX,int charaY,String character){
+        Bullet bullet = new Bullet(charaX, charaY,character);
         root.getChildren().add(bullet);
         bulletList.add(bullet);
+    }
+    public static void enemyShot(int charaX,int charaY,String character){
+        EnemyBullet enemyBullet = new EnemyBullet(charaX, charaY,character);
+        root.getChildren().add(enemyBullet);
     }
     //敵のアクション番号に応じて敵を生成
     public static void addEnemy(int actNum){

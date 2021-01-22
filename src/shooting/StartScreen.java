@@ -27,6 +27,7 @@ public class StartScreen extends Application {
     static Image howToPlayImage = new Image(Paths.get("InvadersImage/HowToPlay.png").toUri().toString());
     static Image scoreImage = new Image(Paths.get("InvadersImage/Score.png").toUri().toString());
     static Image exitImage = new Image(Paths.get("InvadersImage/Exit.png").toUri().toString());
+    static Image bossImage = new Image(Paths.get("InvadersImage/Boss1.png").toUri().toString(),200,200,false,false);
     //static PlayClip pc = new PlayClip(Paths.get("InvadersMusic/startScene.wav").toUri().toString());
 
     //--------main----------
@@ -57,10 +58,13 @@ public class StartScreen extends Application {
         ImageView exit = new ImageView(exitImage);
         exit.setTranslateX(100);
         exit.setTranslateY(570);
+        ImageView boss1 = new ImageView(bossImage);
+        boss1.setTranslateX(600);
+        boss1.setTranslateY(400);
 
         Cursor cursor = new Cursor();
 
-        root.getChildren().addAll(startLogo,start,howToPlay,score,exit,cursor);
+        root.getChildren().addAll(startLogo,start,howToPlay,score,exit,cursor,boss1);
 
         //背景
         BackgroundImage bimg = new BackgroundImage(backgroundImg, null, null, null, null);

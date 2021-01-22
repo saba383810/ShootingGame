@@ -36,6 +36,7 @@ public class Cursor extends ImageView {
             setTranslateX(15);
             setTranslateY(580);
         }
+
     }
 
 
