@@ -38,17 +38,17 @@ public class EnemyBullet extends ImageView {
                     setImage(bullet2Image);
                     setTranslateX(x+=3);
                     setTranslateY(y+=4);
-
-
                     break;
                 case "Enemy2":
                     setImage(bullet3Image);
                     setTranslateX(x-=3);
                     setTranslateY(y+=4);
-
                     break;
             }
         }
-        else setImage(null);
-        //notifyObservers();
-    }}
+        else {
+            setImage(null);
+            timeline.stop();
+        }
+    }
+}

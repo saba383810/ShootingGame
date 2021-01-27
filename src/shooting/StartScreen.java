@@ -29,6 +29,8 @@ public class StartScreen extends Application {
     static Image exitImage = new Image(Paths.get("InvadersImage/Exit.png").toUri().toString());
     static Image bossImage = new Image(Paths.get("InvadersImage/Boss1.png").toUri().toString(),200,200,false,false);
     //static PlayClip pc = new PlayClip(Paths.get("InvadersMusic/startScene.wav").toUri().toString());
+    static PlayClip cursorDec = new PlayClip("InvadersMusic/cursorSE.wav");
+    static PlayClip startSceneBGM = new PlayClip("InvadersMusic/startScene.wav");
 
     //--------main----------
     public static void main (String[] args){ launch(); }
@@ -79,7 +81,7 @@ public class StartScreen extends Application {
 
         //×ボタンで、プログラム終了
         startScreen.setOnCloseRequest(event -> System.exit(0));
-        //pc.play();
+        startSceneBGM.play();
         startScreen.show();
     }
     public void keyPress(KeyEvent event) {
@@ -94,20 +96,30 @@ public class StartScreen extends Application {
             switch (selectNum){
                 case 0:
                     //GameStart!!
+                    cursorDec.reset();
+                    cursorDec.play();
+                    startSceneBGM.stop();
                     startScreen.close();
                     main = new Main(this.startScreen);
                     break;
                 case 1: //遊び方
+                    cursorDec.reset();
+                    cursorDec.play();
                     startScreen.close();
                     howToPlayScreen = new HowToPlayScreen(this.startScreen);
                     break;
                 case 2:
+
                     /*----------------
                         Score 表示
                     ----------------*/
+                    cursorDec.reset();
+                    cursorDec.play();
                     break;
                 case 3:
                     //ゲーム終了
+                    cursorDec.reset();
+                    cursorDec.play();
                     System.exit(0);
                     break;
             }

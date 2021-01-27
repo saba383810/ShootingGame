@@ -97,6 +97,7 @@ public class Main extends Stage {
         if (event.getCode() == KeyCode.LEFT) isGetKeyCode[3] = false;
         if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.Z) isGetKeyCode[4] = false;
         if (event.getCode() == KeyCode.SHIFT) isGetKeyCode[5] = false;
+        System.out.println(player.getTranslateX());
 
     }
 

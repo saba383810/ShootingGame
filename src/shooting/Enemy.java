@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
-import java.io.BufferedReader;
 import java.util.ArrayList;
 
 import java.nio.file.Paths;
@@ -22,7 +21,7 @@ public class Enemy extends ImageView {
     ArrayList<Bullet> bulletList ;
     Bounds enemyBounds;
     static Image enemyImage = new Image(Paths.get("InvadersImage/Enemy1.png").toUri().toString());
-
+    //static PlayClip destroySE = new PlayClip("InvadersMusic/destroy.wav");
     public Enemy(int actNum){
         super(enemyImage);
         this.actNum=actNum;
@@ -69,7 +68,7 @@ public class Enemy extends ImageView {
             setTranslateY(y);
             //enemy当たり判定取得。
             enemyBounds = getBoundsInParent();
-            //全てのたまを取得
+            //全てのたまのリストを取得
             bulletList = Main.getBulletList();
             //現在のenemyと全てのbulletのどれかがぶつかっていれば、得点を増やし、画像をnullにする。
             for (Bullet bullet : bulletList) {
@@ -84,13 +83,14 @@ public class Enemy extends ImageView {
             if(System.currentTimeMillis()-time>800){
                 if(actNum==0)Main.enemyShot(x,y,"Enemy1");
                 else if(actNum==1)Main.enemyShot(x,y,"Enemy2");
-
                 time = System.currentTimeMillis();
             }
-
-
         }else{
+            PlayClip destroySE = new PlayClip("InvadersMusic/destroy.wav");
+            destroySE.reset();
+            destroySE.play();
             setImage(null);
+            timeline.stop();
         }
     }
 }

@@ -14,6 +14,7 @@ public class Player extends ImageView {
     static Image playerImageRight = new Image(Paths.get("InvadersImage/PlayerRight3132.png").toUri().toString());
     static Image playerImageLeft = new Image(Paths.get("InvadersImage/PlayerLeft3132.png").toUri().toString());
     public static long shotTime=0;
+    public int playerHP=4;
     static int canBulletShotTime =100;
     static PlayClip stage1BGM = new PlayClip("InvadersMusic/stage1.wav");
     static PlayClip stage1BossBGM = new PlayClip("Invaders/stage1Boss.wav");
