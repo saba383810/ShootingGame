@@ -20,8 +20,8 @@ public class Enemy extends ImageView {
     Timeline timeline;
     ArrayList<Bullet> bulletList ;
     Bounds enemyBounds;
-    static Image enemyImage = new Image(Paths.get("InvadersImage/Enemy1.png").toUri().toString());
-    //static PlayClip destroySE = new PlayClip("InvadersMusic/destroy.wav");
+    static Image enemyImage = new Image(Paths.get("InvadersImage/Character/Enemy1.png").toUri().toString());
+    PlayClip destroySE = new PlayClip("InvadersMusic/destroy.wav");
     public Enemy(int actNum){
         super(enemyImage);
         this.actNum=actNum;
@@ -38,7 +38,7 @@ public class Enemy extends ImageView {
         }else{
 
         }
-        time = System.currentTimeMillis();
+        time = 500;
 
         //当たり判定用bounds生成
         enemyBounds = getBoundsInParent();
@@ -54,8 +54,8 @@ public class Enemy extends ImageView {
         if (x < Main.screenMaxX && x > Main.screenMinX && y < Main.screenMaxY&&enemyHP>0) {
             switch (actNum) {
                 case 0:
-                    y += 5;
-                    x += 2;
+                    y+=5;
+                    x+=2;
                     break;
                 case 1:
                     y+=5;
@@ -78,7 +78,6 @@ public class Enemy extends ImageView {
                     break;
                 }
             }
-
             //敵玉発射処理
             if(System.currentTimeMillis()-time>800){
                 if(actNum==0)Main.enemyShot(x,y,"Enemy1");
@@ -86,7 +85,6 @@ public class Enemy extends ImageView {
                 time = System.currentTimeMillis();
             }
         }else{
-            PlayClip destroySE = new PlayClip("InvadersMusic/destroy.wav");
             destroySE.reset();
             destroySE.play();
             setImage(null);

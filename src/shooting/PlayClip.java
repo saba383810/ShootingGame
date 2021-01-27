@@ -28,7 +28,4 @@ public class PlayClip {
     public void reset(){
         clip.setFramePosition(0);
     }
-    public void forward(){
-        clip.setFramePosition(clip.getFramePosition()+100000);
-    }
 }

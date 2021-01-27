@@ -9,7 +9,7 @@ import javafx.util.Duration;
 import java.nio.file.Paths;
 
 public class Cursor extends ImageView {
-    static Image cursorImage = new Image(Paths.get("InvadersImage/cursor.png").toUri().toString());
+    static Image cursorImage = new Image(Paths.get("InvadersImage/UI/cursor.png").toUri().toString());
 
     static PlayClip cursorSE = new PlayClip("InvadersMusic/cursorSE.wav");
     int cursorSEnum;
@@ -18,6 +18,7 @@ public class Cursor extends ImageView {
 
     public Cursor(){
         super(cursorImage);
+        setTranslateX(15);
         timeline = new Timeline(new KeyFrame(Duration.millis(50), event->{run();}));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
@@ -26,7 +27,6 @@ public class Cursor extends ImageView {
     public void run(){
         selectNum = StartScreen.getSelectNum();
         if(selectNum==0){
-            setTranslateX(15);
             setTranslateY(280);
             if(cursorSEnum!=0){
                 cursorSE.reset();
@@ -34,7 +34,6 @@ public class Cursor extends ImageView {
             }
              cursorSEnum=0;
         }else if(selectNum==1){
-            setTranslateX(15);
             setTranslateY(380);
             if(cursorSEnum!=1){
                 cursorSE.reset();
@@ -43,7 +42,6 @@ public class Cursor extends ImageView {
             cursorSEnum=1;
 
         }else if(selectNum==2){
-            setTranslateX(15);
             setTranslateY(480);
             if(cursorSEnum!=2){
                 cursorSE.reset();
@@ -52,14 +50,12 @@ public class Cursor extends ImageView {
             cursorSEnum=2;
 
         }else{
-            setTranslateX(15);
             setTranslateY(580);
             if(cursorSEnum!=3) {
                 cursorSE.reset();
                 cursorSE.play();
             }
             cursorSEnum=3;
-
         }
 
     }

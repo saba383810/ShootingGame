@@ -21,13 +21,13 @@ public class StartScreen extends Application {
 
     public static int selectNum;
 
-    static Image backgroundImg = new Image(Paths.get("InvadersImage/BlackBack.png").toUri().toString());
-    static Image startLogoImage = new Image(Paths.get("InvadersImage/ShootingGame.png").toUri().toString());
-    static Image startImage = new Image(Paths.get("InvadersImage/GameStart.png").toUri().toString());
-    static Image howToPlayImage = new Image(Paths.get("InvadersImage/HowToPlay.png").toUri().toString());
-    static Image scoreImage = new Image(Paths.get("InvadersImage/Score.png").toUri().toString());
-    static Image exitImage = new Image(Paths.get("InvadersImage/Exit.png").toUri().toString());
-    static Image bossImage = new Image(Paths.get("InvadersImage/Boss1.png").toUri().toString(),200,200,false,false);
+    static Image backgroundImg = new Image(Paths.get("InvadersImage/UI/BlackBack.png").toUri().toString());
+    static Image startLogoImage = new Image(Paths.get("InvadersImage/UI/ShootingGame.png").toUri().toString());
+    static Image startImage = new Image(Paths.get("InvadersImage/UI/GameStart.png").toUri().toString());
+    static Image howToPlayImage = new Image(Paths.get("InvadersImage/UI/HowToPlay.png").toUri().toString());
+    static Image scoreImage = new Image(Paths.get("InvadersImage/UI/Score.png").toUri().toString());
+    static Image exitImage = new Image(Paths.get("InvadersImage/UI/Exit.png").toUri().toString());
+    static Image bossImage = new Image(Paths.get("InvadersImage/Character/Boss1.png").toUri().toString(),200,200,false,false);
     //static PlayClip pc = new PlayClip(Paths.get("InvadersMusic/startScene.wav").toUri().toString());
     static PlayClip cursorDec = new PlayClip("InvadersMusic/cursorSE.wav");
     static PlayClip startSceneBGM = new PlayClip("InvadersMusic/startScene.wav");

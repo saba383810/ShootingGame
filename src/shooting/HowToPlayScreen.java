@@ -2,7 +2,6 @@ package shooting;
 
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -12,7 +11,7 @@ import javafx.stage.Stage;
 import java.nio.file.Paths;
 
 public class HowToPlayScreen extends Stage{
-    static Image HowToPlayImage = new Image(Paths.get("InvadersImage/HowToPlayScreen.png").toUri().toString());
+    static Image HowToPlayImage = new Image(Paths.get("InvadersImage/UI/HowToPlayScreen.png").toUri().toString());
 
     public  Stage startScreen;
     public  Pane root;

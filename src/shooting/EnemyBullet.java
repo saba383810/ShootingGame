@@ -11,9 +11,9 @@ import java.nio.file.Paths;
 public class EnemyBullet extends ImageView {
     int x;
     int y;
-    static Image bullet2Image = new Image(Paths.get("InvadersImage/bullet2.png").toUri().toString());
-    static Image bullet3Image = new Image(Paths.get("InvadersImage/bullet3.png").toUri().toString());
-    static PlayClip pc = new PlayClip("InvadersMusic/shotSE.wav");
+    static Image bullet2Image = new Image(Paths.get("InvadersImage/Bullet/bullet2.png").toUri().toString());
+    static Image bullet3Image = new Image(Paths.get("InvadersImage/Bullet/bullet3.png").toUri().toString());
+    static PlayClip pc = new PlayClip("InvadersMusic/EnemyBulletSE.wav");
     String character;
 
     Timeline timeline;
@@ -24,9 +24,9 @@ public class EnemyBullet extends ImageView {
         y = charaY;
         setTranslateX(x);
         setTranslateY(y);
-        //効果音: 重いから一旦コメント
-        //pc.play();
-        timeline = new Timeline(new KeyFrame(Duration.millis(10), event->{run();}));
+        pc.reset();
+        pc.play();
+        timeline = new Timeline(new KeyFrame(Duration.millis(20), event->{run();}));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }

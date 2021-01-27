@@ -1,6 +1,5 @@
 package shooting;
 
-import javafx.geometry.Bounds;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -19,8 +18,8 @@ import java.util.ArrayList;
 
 public class Main extends Stage {
 
-    static Image backgroundImg1 = new Image(Paths.get("InvadersImage/Stage1Background.jpg").toUri().toString());
-    static Image stageUIImg= new Image(Paths.get("InvadersImage/stageUI1.png").toUri().toString());
+    static Image backgroundImg1 = new Image(Paths.get("InvadersImage/UI/Stage1Background.jpg").toUri().toString());
+    static Image stageUIImg= new Image(Paths.get("InvadersImage/UI/stageUI1.png").toUri().toString());
     static boolean[] isGetKeyCode = new boolean[6];
     public static Player player = new Player();
     public static Label lb;
@@ -49,6 +48,8 @@ public class Main extends Stage {
         stageUI.setTranslateY(0);
 
         player = new Player();
+        Health hpGage=new Health();
+
         EnemyManagement eneMane=new EnemyManagement();
 
         lb = new Label(String.valueOf(score));
@@ -60,7 +61,7 @@ public class Main extends Stage {
         lb.setTranslateY(100);
 
         root = new Pane();
-        root.getChildren().addAll(player,stageUI,lb);
+        root.getChildren().addAll(player,stageUI,lb,hpGage);
 
         //背景
         BackgroundImage bimg = new BackgroundImage(backgroundImg1, null, null, null, null);
@@ -97,7 +98,6 @@ public class Main extends Stage {
         if (event.getCode() == KeyCode.LEFT) isGetKeyCode[3] = false;
         if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.Z) isGetKeyCode[4] = false;
         if (event.getCode() == KeyCode.SHIFT) isGetKeyCode[5] = false;
-        System.out.println(player.getTranslateX());
 
     }
 
