@@ -19,7 +19,7 @@ public class Cursor extends ImageView {
     public Cursor(){
         super(cursorImage);
         setTranslateX(15);
-        timeline = new Timeline(new KeyFrame(Duration.millis(50), event->{run();}));
+        timeline = new Timeline(new KeyFrame(Duration.millis(10), event->{run();}));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }

@@ -26,7 +26,7 @@ public class EnemyBullet extends ImageView {
         setTranslateY(y);
         pc.reset();
         pc.play();
-        timeline = new Timeline(new KeyFrame(Duration.millis(20), event->{run();}));
+        timeline = new Timeline(new KeyFrame(Duration.millis(10), event->{run();}));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }

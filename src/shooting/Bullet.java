@@ -26,14 +26,14 @@ public class Bullet extends ImageView {
 
         pc.reset();
         pc.play();
-        timeline = new Timeline(new KeyFrame(Duration.millis(30), event->{run();}));
+        timeline = new Timeline(new KeyFrame(Duration.millis(10), event->{run();}));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }
 
     public void run(){
         if (Main.screenMaxX+10>=x&&Main.screenMinX<=x&&Main.screenMaxY>=y&&Main.screenMinY<=y) {
-           setTranslateY(y -= 12);
+           setTranslateY(y -= 6);
            setImage(bullet1Image);
         }
         else {

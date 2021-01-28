@@ -30,7 +30,9 @@ public class Main extends Stage {
     public static int screenMaxX =590;
     public static int screenMaxY=660;
     public static int score=0;
+    public static Health hpGage;
     public static ArrayList<ImageView> bulletList = new ArrayList<>();
+    public static ArrayList<ImageView> enemyBulletList = new ArrayList<>();
 
     ImageView stageUI;
 
@@ -48,7 +50,7 @@ public class Main extends Stage {
         stageUI.setTranslateY(0);
 
         player = new Player();
-        Health hpGage=new Health();
+        hpGage=new Health();
 
         EnemyManagement eneMane=new EnemyManagement();
 
@@ -113,6 +115,7 @@ public class Main extends Stage {
     public static void enemyShot(int charaX,int charaY,String character){
         EnemyBullet enemyBullet = new EnemyBullet(charaX, charaY,character);
         root.getChildren().add(enemyBullet);
+        enemyBulletList.add(enemyBullet);
     }
     //敵のアクション番号に応じて敵を生成
     public static void addEnemy(int actNum){
@@ -124,5 +127,7 @@ public class Main extends Stage {
         score+=addScore;
         lb.setText(String.valueOf(score));
     }
+    public static void changeHP(int playerHP){ hpGage.checkHP(playerHP);}
     public static ArrayList getBulletList(){return bulletList;}
+    public static ArrayList getEnemyBulletList(){return enemyBulletList;}
 }

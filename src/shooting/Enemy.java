@@ -46,7 +46,7 @@ public class Enemy extends ImageView {
         setTranslateY(y);
         setTranslateX(x);
 
-        timeline = new Timeline(new KeyFrame(Duration.millis(30), event->{run();}));
+        timeline = new Timeline(new KeyFrame(Duration.millis(10), event->{run();}));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }
@@ -54,12 +54,12 @@ public class Enemy extends ImageView {
         if (x < Main.screenMaxX && x > Main.screenMinX && y < Main.screenMaxY&&enemyHP>0) {
             switch (actNum) {
                 case 0:
-                    y+=5;
-                    x+=2;
+                    y+=2;
+                    x+=1;
                     break;
                 case 1:
-                    y+=5;
-                    x-=2;
+                    y+=2;
+                    x-=1;
                     break;
                 case 2:
                     break;
