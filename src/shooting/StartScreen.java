@@ -64,7 +64,7 @@ public class StartScreen extends Application {
         boss1.setTranslateX(600);
         boss1.setTranslateY(400);
 
-        Cursor cursor = new Cursor();
+        Cursor cursor = new Cursor(0);
 
         root.getChildren().addAll(startLogo,start,howToPlay,score,exit,cursor,boss1);
 

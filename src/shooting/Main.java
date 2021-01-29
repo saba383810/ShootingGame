@@ -34,6 +34,9 @@ public class Main extends Stage {
     public static ArrayList<ImageView> bulletList = new ArrayList<>();
     public static ArrayList<ImageView> enemyBulletList = new ArrayList<>();
 
+    public GameOver gameOver;
+    public static EnemyManagement eneMane;
+
     ImageView stageUI;
 
 
@@ -41,9 +44,9 @@ public class Main extends Stage {
         startScreen = stage;
 
         //Stage設定、タイトル、大きさ
-        stage.setTitle("シューティングゲーム(仮)");
-        stage.setWidth(900);
-        stage.setHeight(720);
+        setTitle("シューティングゲーム(仮)");
+        setWidth(900);
+        setHeight(720);
 
         stageUI = new ImageView(stageUIImg);
         stageUI.setTranslateX(620);
@@ -52,7 +55,7 @@ public class Main extends Stage {
         player = new Player();
         hpGage=new Health();
 
-        EnemyManagement eneMane=new EnemyManagement();
+        eneMane=new EnemyManagement();
 
         lb = new Label(String.valueOf(score));
         lb.setFont(Font.font(30));
@@ -74,12 +77,12 @@ public class Main extends Stage {
         scene.setOnKeyPressed(this::keyPress);
         scene.setOnKeyReleased(this::keyRelease);
 
-        stage.setScene(scene);
+        setScene(scene);
 
         //×ボタンで、プログラム終了
-        stage.setOnCloseRequest(event -> System.exit(0));
+        setOnCloseRequest(event -> System.exit(0));
 
-        stage.show();
+        show();
     }
 
     public void keyPress(KeyEvent event) {
@@ -90,7 +93,8 @@ public class Main extends Stage {
         if (event.getCode() == KeyCode.LEFT) isGetKeyCode[3] = true;
         if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.Z) isGetKeyCode[4] = true;
         if (event.getCode() == KeyCode.SHIFT) isGetKeyCode[5] = true;
-        if (event.getCode() == KeyCode.A)addScore(100);
+        if (event.getCode() == KeyCode.A)gameOver();
+
 
     }
     public void keyRelease(KeyEvent event){
@@ -100,7 +104,6 @@ public class Main extends Stage {
         if (event.getCode() == KeyCode.LEFT) isGetKeyCode[3] = false;
         if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.Z) isGetKeyCode[4] = false;
         if (event.getCode() == KeyCode.SHIFT) isGetKeyCode[5] = false;
-
     }
 
     //現在trueになってるキーコードをreturn
@@ -130,4 +133,11 @@ public class Main extends Stage {
     public static void changeHP(int playerHP){ hpGage.checkHP(playerHP);}
     public static ArrayList getBulletList(){return bulletList;}
     public static ArrayList getEnemyBulletList(){return enemyBulletList;}
+
+    public void gameOver(){
+        this.close();
+        Player.playerStop();
+        EnemyManagement.enemyManagementStop();
+        gameOver = new GameOver(startScreen,score);
+    }
 }

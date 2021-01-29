@@ -27,8 +27,8 @@ public class HowToPlayScreen extends Stage{
         root = new Pane();
 
         //背景
-        BackgroundImage bimg = new BackgroundImage(HowToPlayImage, null, null, null, null);
-        Background bg1 = new Background(bimg);
+        BackgroundImage bImg = new BackgroundImage(HowToPlayImage, null, null, null, null);
+        Background bg1 = new Background(bImg);
         root.setBackground(bg1);
 
         Scene scene = new Scene(root);

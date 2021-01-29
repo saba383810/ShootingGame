@@ -5,12 +5,11 @@ import javafx.animation.Timeline;
 import javafx.util.Duration;
 
 public class EnemyManagement {
-    Timeline timeline;
+    public static Timeline timeline;
     long time;
     long startTime;
     long roundManageTime;
     int stageRound=0;
-
 
     public EnemyManagement(){
         time = System.currentTimeMillis();
@@ -45,5 +44,8 @@ public class EnemyManagement {
         else if(roundManageTime>16000&&roundManageTime<22000) stageRound =3;
         else if(roundManageTime>24000&&roundManageTime<32000) stageRound = 4;
         else stageRound=0;
+    }
+    public static void enemyManagementStop(){
+        timeline.stop();
     }
 }

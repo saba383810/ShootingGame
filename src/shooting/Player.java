@@ -25,7 +25,7 @@ public class Player extends ImageView {
     static PlayClip hit = new PlayClip("InvadersMusic/Hit.wav");
     static PlayClip rePop = new PlayClip("InvadersMusic/rePop.wav");
 
-    Timeline timeline;
+    static Timeline timeline;
     Bounds playerBounds;
     boolean[] isGetKeyCode;
     public static ArrayList<EnemyBullet> enemyBulletList;
@@ -109,5 +109,9 @@ public class Player extends ImageView {
                 }
             }
         }
+    }
+    public static void playerStop(){
+        stage1BGM.stop();
+        timeline.stop();
     }
 }
