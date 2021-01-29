@@ -20,8 +20,12 @@ public class Main extends Stage {
 
     static Image backgroundImg1 = new Image(Paths.get("InvadersImage/UI/Stage1Background.jpg").toUri().toString());
     static Image stageUIImg= new Image(Paths.get("InvadersImage/UI/stageUI1.png").toUri().toString());
+    static PlayClip stage1BGM = new PlayClip("InvadersMusic/stage1.wav");
+    static PlayClip boss1BGM = new PlayClip("InvadersMusic/boss1.wav");
+    static PlayClip boss2BGM = new PlayClip("InvadersMusic/boss2.wav");
+    static PlayClip stage2BGM = new PlayClip("InvadersMusic/stage2.wav");
     static boolean[] isGetKeyCode = new boolean[6];
-    public static Player player = new Player();
+    public static Player player;
     public static Label lb;
     public static Stage startScreen;
     public static Pane root;
@@ -29,12 +33,12 @@ public class Main extends Stage {
     public static int screenMinY=0;
     public static int screenMaxX =590;
     public static int screenMaxY=660;
-    public static int score=0;
+    public static int score;
     public static Health hpGage;
     public static ArrayList<ImageView> bulletList = new ArrayList<>();
     public static ArrayList<ImageView> enemyBulletList = new ArrayList<>();
 
-    public GameOver gameOver;
+    public static GameOver gameOver;
     public static EnemyManagement eneMane;
 
     ImageView stageUI;
@@ -42,7 +46,7 @@ public class Main extends Stage {
 
     public Main(Stage stage)  {
         startScreen = stage;
-
+        score =0;
         //Stage設定、タイトル、大きさ
         setTitle("シューティングゲーム(仮)");
         setWidth(900);
@@ -52,7 +56,7 @@ public class Main extends Stage {
         stageUI.setTranslateX(620);
         stageUI.setTranslateY(0);
 
-        player = new Player();
+        player = new Player(this);
         hpGage=new Health();
 
         eneMane=new EnemyManagement();
@@ -81,7 +85,9 @@ public class Main extends Stage {
 
         //×ボタンで、プログラム終了
         setOnCloseRequest(event -> System.exit(0));
-
+        stage2BGM.clip.loop(10);
+        stage2BGM.reset();
+        stage2BGM.play();
         show();
     }
 
@@ -110,8 +116,8 @@ public class Main extends Stage {
     public static boolean[] getKeyCodePress(){ return isGetKeyCode; }
 
     //キャラクターのたま表示
-    public static void shot(int charaX,int charaY,String character){
-        Bullet bullet = new Bullet(charaX, charaY,character);
+    public static void shot(){
+        Bullet bullet = new Bullet((int)player.getTranslateX(),(int)player.getTranslateY());
         root.getChildren().add(bullet);
         bulletList.add(bullet);
     }
@@ -136,7 +142,11 @@ public class Main extends Stage {
 
     public void gameOver(){
         this.close();
-        Player.playerStop();
+        player.playerStop();
+        stage1BGM.stop();
+        boss1BGM.stop();
+        stage2BGM.stop();
+        boss2BGM.stop();
         EnemyManagement.enemyManagementStop();
         gameOver = new GameOver(startScreen,score);
     }

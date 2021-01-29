@@ -18,10 +18,6 @@ public class Player extends ImageView {
     public static long shotTime=0;
     public int playerHP=4;
     static int canBulletShotTime =100;
-    static PlayClip stage1BGM = new PlayClip("InvadersMusic/stage1.wav");
-    static PlayClip boss1BGM = new PlayClip("InvadersMusic/boss1.wav");
-    static PlayClip battle2BGM = new PlayClip("InvadersMusic/battle06.wav");
-    static PlayClip stage2BGM = new PlayClip("InvadersMusic/stage2.wav");
     static PlayClip hit = new PlayClip("InvadersMusic/Hit.wav");
     static PlayClip rePop = new PlayClip("InvadersMusic/rePop.wav");
 
@@ -31,15 +27,17 @@ public class Player extends ImageView {
     public static ArrayList<EnemyBullet> enemyBulletList;
     double damageTime;
     boolean isDamage = false;
-    private int x=290;
-    private int y=600;
+    private int x;
+    private int y;
+    private Main mainScreen;
 
-    Player(){
+    Player(Main mainScreen){
         super(playerIMageFront);
+        this.mainScreen = mainScreen;
+        x=290;
+        y=600;
         setTranslateY(y);
         setTranslateX(x);
-        stage1BGM.reset();
-        stage1BGM.play();
 
         damageTime = System.currentTimeMillis();
         timeline = new Timeline(new KeyFrame(Duration.millis(20), event-> run()));
@@ -86,8 +84,7 @@ public class Player extends ImageView {
 
         //玉発射
         if (!(isDamage)&&isGetKeyCode[4] && System.currentTimeMillis()-shotTime>canBulletShotTime) {
-            Main.shot(x,y,"Player");
-            System.out.println("("+x+","+y+")");
+            Main.shot();
             shotTime = System.currentTimeMillis();
         }
         //当たり判定
@@ -109,9 +106,9 @@ public class Player extends ImageView {
                 }
             }
         }
+        if(playerHP<=0)mainScreen.gameOver();
     }
     public static void playerStop(){
-        stage1BGM.stop();
         timeline.stop();
     }
 }

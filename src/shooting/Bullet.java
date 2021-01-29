@@ -9,15 +9,14 @@ import javafx.util.Duration;
 import java.nio.file.Paths;
 
 public class Bullet extends ImageView {
-    int x;
-    int y;
+    private int x;
+    private int y;
     static Image bullet1Image = new Image(Paths.get("InvadersImage/Bullet/bullet1.png").toUri().toString());
     static PlayClip pc = new PlayClip("InvadersMusic/shot1.wav");
     String character;
     Timeline timeline;
 
-    public Bullet(int charaX ,int charaY,String character) {
-        this.character = character;
+    public Bullet(int charaX , int charaY) {
         x = charaX + 7;
         setTranslateX(x);
         y = charaY - 10;

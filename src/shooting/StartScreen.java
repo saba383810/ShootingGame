@@ -81,6 +81,8 @@ public class StartScreen extends Application {
 
         //×ボタンで、プログラム終了
         startScreen.setOnCloseRequest(event -> System.exit(0));
+
+        startSceneBGM.clip.loop(10);
         startSceneBGM.play();
         startScreen.show();
     }
@@ -127,6 +129,10 @@ public class StartScreen extends Application {
     }
     public static int getSelectNum(){
         return selectNum;
+    }
+    public static void musicStart() {
+        startSceneBGM.reset();
+        startSceneBGM.play();
     }
 }
 

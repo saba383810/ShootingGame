@@ -36,6 +36,10 @@ public class EnemyManagement {
             Main.addEnemy(0);
             time= System.currentTimeMillis();
         }
+        else if (stageRound==5&&System.currentTimeMillis()-time>250){
+            Main.addEnemy(1);
+            time= System.currentTimeMillis();
+        }
 
         //ゲーム開始時からの時間でゲームラウンドを設定。
         roundManageTime= System.currentTimeMillis()-startTime;
@@ -43,6 +47,7 @@ public class EnemyManagement {
         else if(roundManageTime>10000&&roundManageTime<14000)stageRound=2;
         else if(roundManageTime>16000&&roundManageTime<22000) stageRound =3;
         else if(roundManageTime>24000&&roundManageTime<32000) stageRound = 4;
+        else if(roundManageTime>34000&&roundManageTime<42000) stageRound = 5;
         else stageRound=0;
     }
     public static void enemyManagementStop(){

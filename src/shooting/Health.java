@@ -22,7 +22,9 @@ public class Health extends ImageView {
         setTranslateY(y);
     }
     public void checkHP(int playerHP){
-        if(playerHP==0)      setImage(HP0);
+        if(playerHP==0) {
+            setImage(HP0);
+        }
         else if(playerHP==1) setImage(HP1);
         else if(playerHP==2) setImage(HP2);
         else if(playerHP==3) setImage(HP3);
