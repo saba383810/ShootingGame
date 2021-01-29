@@ -15,6 +15,7 @@ public class Bullet extends ImageView {
     static PlayClip pc = new PlayClip("InvadersMusic/shot1.wav");
     String character;
     Timeline timeline;
+    private boolean isTouched =false;
 
     public Bullet(int charaX , int charaY) {
         x = charaX + 7;
@@ -31,13 +32,17 @@ public class Bullet extends ImageView {
     }
 
     public void run(){
-        if (Main.screenMaxX+10>=x&&Main.screenMinX<=x&&Main.screenMaxY>=y&&Main.screenMinY<=y) {
+        if (!(isTouched)&&Main.screenMaxX+10>=x&&Main.screenMinX<=x&&Main.screenMaxY>=y&&Main.screenMinY<=y) {
            setTranslateY(y -= 6);
            setImage(bullet1Image);
         }
         else {
             setImage(null);
+            setTranslateY(1000);
             timeline.stop();
         }
+    }
+    public void touched(){
+        isTouched=true;
     }
 }

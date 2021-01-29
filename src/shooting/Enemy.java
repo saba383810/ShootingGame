@@ -27,11 +27,11 @@ public class Enemy extends ImageView {
         this.actNum=actNum;
         //行動パターンに伴った初期位置を指定
 
-        if(actNum==0){
+        if(actNum==0||actNum==2){
             x=50;
             y=0;
             enemyHP=1;
-        }else if(actNum==1){
+        }else if(actNum==1||actNum==3){
             x=500;
             y=0;
             enemyHP=1;
@@ -62,6 +62,8 @@ public class Enemy extends ImageView {
                     x-=1;
                     break;
                 case 2:
+                case 3:
+                    y+=1;
                     break;
             }
             setTranslateX(x);
@@ -74,14 +76,16 @@ public class Enemy extends ImageView {
             for (Bullet bullet : bulletList) {
                 if (enemyBounds.intersects(bullet.getBoundsInParent())) {
                     Main.addScore(350);
+                    bullet.touched();
                     enemyHP--;
                     break;
                 }
             }
             //敵玉発射処理
             if(System.currentTimeMillis()-time>800){
-                if(actNum==0)Main.enemyShot(x,y,"Enemy1");
-                else if(actNum==1)Main.enemyShot(x,y,"Enemy2");
+                if(actNum==0||actNum==2)Main.enemyShot(x,y,"Enemy1");
+                else if(actNum==1||actNum==3)Main.enemyShot(x,y,"Enemy2");
+
                 time = System.currentTimeMillis();
             }
         }else{

@@ -99,7 +99,7 @@ public class Main extends Stage {
         if (event.getCode() == KeyCode.LEFT) isGetKeyCode[3] = true;
         if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.Z) isGetKeyCode[4] = true;
         if (event.getCode() == KeyCode.SHIFT) isGetKeyCode[5] = true;
-        if (event.getCode() == KeyCode.A)gameOver();
+        if (event.getCode() == KeyCode.A)changeBGM();
 
 
     }
@@ -149,5 +149,10 @@ public class Main extends Stage {
         boss2BGM.stop();
         EnemyManagement.enemyManagementStop();
         gameOver = new GameOver(startScreen,score);
+    }
+    public void changeBGM(){
+        stage2BGM.stop();
+        boss2BGM.reset();
+        boss2BGM.play();
     }
 }
