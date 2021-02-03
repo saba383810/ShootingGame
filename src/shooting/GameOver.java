@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class GameOver extends Stage{
@@ -29,6 +30,7 @@ public class GameOver extends Stage{
     String highScore;
     Label scoreLabel;
     Label highScoreLabel;
+    static Image stageClearBack= new Image(Paths.get("InvadersImage/UI/StageClear.png").toUri().toString());
     static Image gameOverBack= new Image(Paths.get("InvadersImage/UI/gameOver.png").toUri().toString());
     static Image menuImg = new Image(Paths.get("InvadersImage/UI/menu.png").toUri().toString());
     static Image restartImg = new Image(Paths.get("InvadersImage/UI/restart.png").toUri().toString());
@@ -36,7 +38,7 @@ public class GameOver extends Stage{
     static Image newImg = new Image(Paths.get("InvadersImage/UI/new.png").toUri().toString());
     static PlayClip gameOverBGM = new PlayClip("InvadersMusic/gameOver.wav");
 
-    public GameOver(Stage startScreen,int newScore){
+    public GameOver(Stage startScreen,int newScore,boolean isClear){
         this.startScreen = startScreen;
         this.score = newScore;
         ImageView newImgView = new ImageView(newImg);
@@ -112,7 +114,10 @@ public class GameOver extends Stage{
         root.getChildren().addAll(cursor,menu,restart,exit,scoreLabel,highScoreLabel,newImgView);
 
         //背景
-        BackgroundImage bImg = new BackgroundImage(gameOverBack, null, null, null, null);
+        BackgroundImage bImg;
+
+        if(isClear) bImg = new BackgroundImage(stageClearBack, null, null, null, null);
+        else bImg = new BackgroundImage(gameOverBack, null, null, null, null);
         Background bg1 = new Background(bImg);
         root.setBackground(bg1);
 
@@ -142,8 +147,6 @@ public class GameOver extends Stage{
             switch (selectNum){
                 case 0:
                     //GameReStart!!
-//                    cursorDec.reset();
-//                    cursorDec.play();
                     //ゲームオーバー音楽ストップ
                     this.close();
                     gameOverBGM.stop();
@@ -151,8 +154,6 @@ public class GameOver extends Stage{
                     break;
                 case 1:
                     //StartSceneに戻る
-//                    cursorDec.reset();
-//                    cursorDec.play();
                     this.close();
                     gameOverBGM.stop();
                     startScreen.show();

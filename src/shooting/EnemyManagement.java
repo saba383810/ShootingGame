@@ -10,8 +10,10 @@ public class EnemyManagement {
     long startTime;
     long roundManageTime;
     int stageRound=0;
+    Main mainScreen;
 
-    public EnemyManagement(){
+    public EnemyManagement(Main mainScreen){
+        this.mainScreen=mainScreen;
         time = System.currentTimeMillis();
         startTime = System.currentTimeMillis();
         timeline = new Timeline(new KeyFrame(Duration.millis(50), event->{run();}));
@@ -21,27 +23,27 @@ public class EnemyManagement {
     void run(){
         //ゲームラウンドに応じて敵を出撃じゃ！^^
         if(stageRound==1 && System.currentTimeMillis()-time>500){
-            Main.addEnemy(0);
+            mainScreen.addEnemy(0);
             time=System.currentTimeMillis();
         }else if(stageRound==2 && System.currentTimeMillis()-time>500){
-            Main.addEnemy(1);
+            mainScreen.addEnemy(1);
             time=System.currentTimeMillis();
         }
         else if(stageRound==3 && System.currentTimeMillis()-time>500){
-            Main.addEnemy(0);
-            Main.addEnemy(1);
+            mainScreen.addEnemy(0);
+            mainScreen.addEnemy(1);
             time= System.currentTimeMillis();
         }
         else if (stageRound==4&&System.currentTimeMillis()-time>500){
-            Main.addEnemy(2);
+            mainScreen.addEnemy(2);
             time= System.currentTimeMillis();
         }
         else if (stageRound==5&&System.currentTimeMillis()-time>500){
-            Main.addEnemy(3);
+            mainScreen.addEnemy(3);
             time= System.currentTimeMillis();
         }
         else if (stageRound==6&&System.currentTimeMillis()-time>500){
-            Main.addBoss();
+            mainScreen.addBoss();
             stageRound=7;
         }else
 

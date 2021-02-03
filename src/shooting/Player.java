@@ -47,7 +47,7 @@ public class Player extends ImageView {
     //キャラクターの移動
     public void run(){
         //keycode取得
-        isGetKeyCode = Main.getKeyCodePress();
+        isGetKeyCode = mainScreen.getKeyCodePress();
 
         //移動(Shiftが押されていたら低速移動モード。)
         if(isGetKeyCode[0] && Main.screenMinY<y) {
@@ -84,14 +84,14 @@ public class Player extends ImageView {
 
         //玉発射
         if (!(isDamage)&&isGetKeyCode[4] && System.currentTimeMillis()-shotTime>canBulletShotTime) {
-            Main.shot();
+            mainScreen.shot();
             shotTime = System.currentTimeMillis();
         }
         //当たり判定
 
         playerBounds = getBoundsInParent();
         //全てのたまのリストを取得
-        enemyBulletList = Main.getEnemyBulletList();
+        enemyBulletList = mainScreen.getEnemyBulletList();
         if(System.currentTimeMillis()-damageTime>2000) {
             //現在のenemyと全てのbulletのどれかがぶつかっていれば、得点を増やし、画像をnullにする。
             for (EnemyBullet bullet : enemyBulletList) {
@@ -99,7 +99,7 @@ public class Player extends ImageView {
                     hit.reset();
                     hit.play();
                     playerHP--;
-                    Main.changeHP(playerHP);
+                    mainScreen.changeHP(playerHP);
                     damageTime = System.currentTimeMillis();
                     isDamage = true;
                     break;

@@ -22,9 +22,12 @@ public class Enemy extends ImageView {
     Bounds enemyBounds;
     static Image enemyImage = new Image(Paths.get("InvadersImage/Character/Enemy1.png").toUri().toString());
     PlayClip destroySE = new PlayClip("InvadersMusic/destroy.wav");
-    public Enemy(int actNum){
+    private  Main mainScreen;
+
+    public Enemy(int actNum,Main mainScreen){
         super(enemyImage);
         this.actNum=actNum;
+        this.mainScreen = mainScreen;
         //行動パターンに伴った初期位置を指定
 
         if(actNum==0||actNum==2){
@@ -71,11 +74,11 @@ public class Enemy extends ImageView {
             //enemy当たり判定取得。
             enemyBounds = getBoundsInParent();
             //全てのたまのリストを取得
-            bulletList = Main.getBulletList();
+            bulletList = mainScreen.getBulletList();
             //現在のenemyと全てのbulletのどれかがぶつかっていれば、得点を増やし、画像をnullにする。
             for (Bullet bullet : bulletList) {
                 if (enemyBounds.intersects(bullet.getBoundsInParent())) {
-                    Main.addScore(350);
+                    mainScreen.addScore(350);
                     bullet.touched();
                     enemyHP--;
                     break;
@@ -83,8 +86,8 @@ public class Enemy extends ImageView {
             }
             //敵玉発射処理
             if(System.currentTimeMillis()-time>800){
-                if(actNum==0||actNum==2)Main.enemyShot(x,y,"Enemy1");
-                else if(actNum==1||actNum==3)Main.enemyShot(x,y,"Enemy2");
+                if(actNum==0||actNum==2)mainScreen.enemyShot(x,y,"Enemy1");
+                else if(actNum==1||actNum==3)mainScreen.enemyShot(x,y,"Enemy2");
 
                 time = System.currentTimeMillis();
             }

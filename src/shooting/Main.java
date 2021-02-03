@@ -60,7 +60,7 @@ public class Main extends Stage {
         player = new Player(this);
         hpGage=new Health();
 
-        eneMane=new EnemyManagement();
+        eneMane=new EnemyManagement(this);
 
         lb = new Label(String.valueOf(score));
         lb.setFont(Font.font(30));
@@ -114,26 +114,25 @@ public class Main extends Stage {
     }
 
     //現在trueになってるキーコードをreturn
-    public static boolean[] getKeyCodePress(){ return isGetKeyCode; }
-
+    public boolean[] getKeyCodePress(){ return isGetKeyCode; }
     //キャラクターのたま表示
-    public static void shot(){
+    public void shot(){
         Bullet bullet = new Bullet((int)player.getTranslateX(),(int)player.getTranslateY());
         root.getChildren().add(bullet);
         bulletList.add(bullet);
     }
-    public static void enemyShot(int charaX,int charaY,String character){
+    public void enemyShot(int charaX,int charaY,String character){
         EnemyBullet enemyBullet = new EnemyBullet(charaX, charaY,character);
         root.getChildren().add(enemyBullet);
         enemyBulletList.add(enemyBullet);
     }
     //敵のアクション番号に応じて敵を生成
-    public static void addEnemy(int actNum){
-        Enemy enemy = new Enemy(actNum);
+    public void addEnemy(int actNum){
+        Enemy enemy = new Enemy(actNum,this);
         root.getChildren().add(enemy);
     }
-    public static void addBoss(){
-        Boss boss = new Boss();
+    public void addBoss(){
+        Boss boss = new Boss(this);
         root.getChildren().add(boss);
         bossHealth = new BossHealth();
         root.getChildren().add(bossHealth);
@@ -141,14 +140,14 @@ public class Main extends Stage {
     }
 
     //取得したスコア分スコアを増加
-    public static void addScore(int addScore){
+    public void addScore(int addScore){
         score+=addScore;
         lb.setText(String.valueOf(score));
     }
-    public static void changeHP(int playerHP){ hpGage.checkHP(playerHP);}
-    public static void changeBossHP(int bossHP){bossHealth.checkBossHP(bossHP);}
-    public static ArrayList getBulletList(){return bulletList;}
-    public static ArrayList getEnemyBulletList(){return enemyBulletList;}
+    public void changeHP(int playerHP){ hpGage.checkHP(playerHP);}
+    public void changeBossHP(int bossHP){bossHealth.checkBossHP(bossHP);}
+    public  ArrayList getBulletList(){return bulletList;}
+    public  ArrayList getEnemyBulletList(){return enemyBulletList;}
 
     public void gameOver(){
         this.close();
@@ -158,9 +157,20 @@ public class Main extends Stage {
         stage2BGM.stop();
         boss2BGM.stop();
         EnemyManagement.enemyManagementStop();
-        gameOver = new GameOver(startScreen,score);
+        gameOver = new GameOver(startScreen,score,false);
     }
-    public static void changeBGM(){
+    public void stageClear(){
+        this.close();
+        player.playerStop();
+        stage1BGM.stop();
+        boss1BGM.stop();
+        stage2BGM.stop();
+        boss2BGM.stop();
+        EnemyManagement.enemyManagementStop();
+        gameOver = new GameOver(startScreen,score,true);
+
+    }
+    public void changeBGM(){
         stage2BGM.stop();
         boss2BGM.reset();
         boss2BGM.play();
