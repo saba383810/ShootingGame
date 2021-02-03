@@ -15,7 +15,6 @@ public class EnemyBullet extends ImageView {
     static Image bullet3Image = new Image(Paths.get("InvadersImage/Bullet/bullet3.png").toUri().toString());
     static PlayClip pc = new PlayClip("InvadersMusic/EnemyBulletSE.wav");
     String character;
-
     Timeline timeline;
 
     public EnemyBullet(int charaX ,int charaY,String character) {

@@ -33,7 +33,7 @@ public class Bullet extends ImageView {
 
     public void run(){
         if (!(isTouched)&&Main.screenMaxX+10>=x&&Main.screenMinX<=x&&Main.screenMaxY>=y&&Main.screenMinY<=y) {
-           setTranslateY(y -= 6);
+           setTranslateY(y -= 8);
            setImage(bullet1Image);
         }
         else {

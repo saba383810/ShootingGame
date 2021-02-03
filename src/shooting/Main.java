@@ -35,6 +35,7 @@ public class Main extends Stage {
     public static int screenMaxY=660;
     public static int score;
     public static Health hpGage;
+    public static BossHealth bossHealth;
     public static ArrayList<ImageView> bulletList = new ArrayList<>();
     public static ArrayList<ImageView> enemyBulletList = new ArrayList<>();
 
@@ -134,6 +135,9 @@ public class Main extends Stage {
     public static void addBoss(){
         Boss boss = new Boss();
         root.getChildren().add(boss);
+        bossHealth = new BossHealth();
+        root.getChildren().add(bossHealth);
+
     }
 
     //取得したスコア分スコアを増加
@@ -142,6 +146,7 @@ public class Main extends Stage {
         lb.setText(String.valueOf(score));
     }
     public static void changeHP(int playerHP){ hpGage.checkHP(playerHP);}
+    public static void changeBossHP(int bossHP){bossHealth.checkBossHP(bossHP);}
     public static ArrayList getBulletList(){return bulletList;}
     public static ArrayList getEnemyBulletList(){return enemyBulletList;}
 

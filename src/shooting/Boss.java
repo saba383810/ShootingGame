@@ -37,7 +37,6 @@ public class Boss extends ImageView {
         timeline.play();
     }
     public void run(){
-
         deltaTime= System.currentTimeMillis()-startTime;
         if(deltaTime<2500){
             setTranslateY(y++);
@@ -59,7 +58,8 @@ public class Boss extends ImageView {
         //現在のenemyと全てのbulletのどれかがぶつかっていれば、得点を増やし、画像をnullにする。
         for (Bullet bullet : bulletList) {
             if (bossBounds.intersects(bullet.getBoundsInParent())) {
-                Main.addScore(400);
+                Main.addScore(440);
+                Main.changeBossHP(bossHP);
                 bullet.touched();
                 bossHP--;
                 System.out.println(bossHP);
