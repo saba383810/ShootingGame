@@ -17,7 +17,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class GameOver extends Stage{
@@ -150,7 +149,7 @@ public class GameOver extends Stage{
                     //ゲームオーバー音楽ストップ
                     this.close();
                     gameOverBGM.stop();
-                    mainStage = new Main(this.startScreen);
+                    mainStage = new Main(startScreen);
                     break;
                 case 1:
                     //StartSceneに戻る

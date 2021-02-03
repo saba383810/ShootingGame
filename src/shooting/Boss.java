@@ -5,7 +5,6 @@ import javafx.animation.Timeline;
 import javafx.geometry.Bounds;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.nio.file.Paths;
@@ -66,11 +65,14 @@ public class Boss extends ImageView {
                 mainScreen.changeBossHP(bossHP);
                 bullet.touched();
                 bossHP--;
-                System.out.println(bossHP);
                 break;
             }
         }
-        if(bossHP<=0)mainScreen.stageClear();
+        if(bossHP<=0){
+
+            mainScreen.stageClear();
+            timeline.stop();
+        }
     }
 }
 
