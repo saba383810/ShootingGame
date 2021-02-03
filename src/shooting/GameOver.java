@@ -2,7 +2,6 @@ package shooting;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -44,7 +43,6 @@ public class GameOver extends Stage{
         newImgView.setTranslateX(50);
         newImgView.setTranslateY(500);
 
-
         //highScore取得&書き込み
         try {
             File file = new File("src/shooting/highScore.txt");
@@ -74,7 +72,6 @@ public class GameOver extends Stage{
         }else{
             newImgView.setImage(null);
         }
-
 
         //Stage設定
         setTitle("Stage1");
@@ -111,7 +108,6 @@ public class GameOver extends Stage{
         highScoreLabel.setTranslateX(300);
         highScoreLabel.setTranslateY(420);
 
-
         root = new Pane();
         root.getChildren().addAll(cursor,menu,restart,exit,scoreLabel,highScoreLabel,newImgView);
 
@@ -130,7 +126,6 @@ public class GameOver extends Stage{
         gameOverBGM.clip.loop(10);
         gameOverBGM.reset();
         gameOverBGM.play();
-
 
         show();
     }

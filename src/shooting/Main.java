@@ -48,7 +48,7 @@ public class Main extends Stage {
         startScreen = stage;
         score =0;
         //Stage設定、タイトル、大きさ
-        setTitle("シューティングゲーム(仮)");
+        setTitle("Stage1");
         setWidth(900);
         setHeight(720);
 
@@ -73,8 +73,8 @@ public class Main extends Stage {
         root.getChildren().addAll(player,stageUI,lb,hpGage);
 
         //背景
-        BackgroundImage bimg = new BackgroundImage(backgroundImg1, null, null, null, null);
-        Background bg1 = new Background(bimg);
+        BackgroundImage bImg = new BackgroundImage(backgroundImg1, null, null, null, null);
+        Background bg1 = new Background(bImg);
         root.setBackground(bg1);
 
         Scene scene = new Scene(root);
@@ -99,7 +99,7 @@ public class Main extends Stage {
         if (event.getCode() == KeyCode.LEFT) isGetKeyCode[3] = true;
         if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.Z) isGetKeyCode[4] = true;
         if (event.getCode() == KeyCode.SHIFT) isGetKeyCode[5] = true;
-        if (event.getCode() == KeyCode.A)changeBGM();
+        if (event.getCode() == KeyCode.A)gameOver();
 
 
     }
@@ -131,6 +131,11 @@ public class Main extends Stage {
         Enemy enemy = new Enemy(actNum);
         root.getChildren().add(enemy);
     }
+    public static void addBoss(){
+        Boss boss = new Boss();
+        root.getChildren().add(boss);
+    }
+
     //取得したスコア分スコアを増加
     public static void addScore(int addScore){
         score+=addScore;
@@ -150,7 +155,7 @@ public class Main extends Stage {
         EnemyManagement.enemyManagementStop();
         gameOver = new GameOver(startScreen,score);
     }
-    public void changeBGM(){
+    public static void changeBGM(){
         stage2BGM.stop();
         boss2BGM.reset();
         boss2BGM.play();
