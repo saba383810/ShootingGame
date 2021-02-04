@@ -20,7 +20,7 @@ public class HowToPlayScreen extends Stage{
         this.startScreen = startScreen;
 
         //Stage設定、タイトル、大きさ
-        setTitle("シューティングゲーム(仮)");
+        setTitle("遊び方");
         setWidth(900);
         setHeight(720);
 

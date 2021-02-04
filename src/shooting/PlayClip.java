@@ -9,7 +9,7 @@ public class PlayClip {
 
     Clip clip = null;
 
-    PlayClip(String fileName){
+    PlayClip( String fileName){
         try{
             AudioInputStream ais = AudioSystem.getAudioInputStream(new File(fileName));
             clip = AudioSystem.getClip();

@@ -43,6 +43,7 @@ public class GameOver extends Stage{
         ImageView newImgView = new ImageView(newImg);
         newImgView.setTranslateX(50);
         newImgView.setTranslateY(500);
+        setTitle("リザルト");
 
         //highScore取得&書き込み
         try {

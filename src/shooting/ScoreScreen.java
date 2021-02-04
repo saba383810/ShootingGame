@@ -30,8 +30,7 @@ public class ScoreScreen extends Stage{
     public ScoreScreen(Stage startScreen){
         this.startScreen = startScreen;
 
-        //Stage設定、タイトル、大きさ
-        setTitle("シューティングゲーム(仮)");
+        setTitle("スコア画面");
         setWidth(900);
         setHeight(720);
 
@@ -57,18 +56,14 @@ public class ScoreScreen extends Stage{
         highScoreLabel.setTranslateX(350);
         highScoreLabel.setTranslateY(140);
 
-        //背景
         BackgroundImage bImg = new BackgroundImage(ScoreBackImage, null, null, null, null);
         Background bg1 = new Background(bImg);
         root.setBackground(bg1);
         root.getChildren().add(highScoreLabel);
 
-
         Scene scene = new Scene(root);
         scene.setOnKeyPressed(this::keyPress);
         setScene(scene);
-
-        //×ボタンで、プログラム終了
         setOnCloseRequest(event -> System.exit(0));
 
         show();

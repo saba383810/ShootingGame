@@ -39,7 +39,7 @@ public class StartScreen extends Application {
 
 
         startScreen =stage;
-        startScreen.setTitle("シューティングゲーム(仮)");
+        startScreen.setTitle("シューティングゲーム");
         startScreen.setWidth(900);
         startScreen.setHeight(720);
 

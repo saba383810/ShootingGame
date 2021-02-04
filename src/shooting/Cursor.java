@@ -22,7 +22,7 @@ public class Cursor extends ImageView {
         this.stageNum = stageNum;
         if(stageNum==0) setTranslateX(15);
         else setTranslateX(550);
-        timeline = new Timeline(new KeyFrame(Duration.millis(30), event->{run();}));
+        timeline = new Timeline(new KeyFrame(Duration.millis(10), event->{run();}));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }
