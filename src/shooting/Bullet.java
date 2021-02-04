@@ -13,7 +13,6 @@ public class Bullet extends ImageView {
     private int y;
     static Image bullet1Image = new Image(Paths.get("InvadersImage/Bullet/bullet1.png").toUri().toString());
     static PlayClip pc = new PlayClip("InvadersMusic/shot1.wav");
-    String character;
     Timeline timeline;
     private boolean isTouched =false;
 

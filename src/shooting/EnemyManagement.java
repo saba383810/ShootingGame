@@ -45,7 +45,7 @@ public class EnemyManagement {
         else if (stageRound==6&&System.currentTimeMillis()-time>500){
             mainScreen.addBoss();
             stageRound=7;
-        }else
+        }
 
         //ゲーム開始時からの時間でゲームラウンドを設定。
         roundManageTime= System.currentTimeMillis()-startTime;
@@ -56,7 +56,7 @@ public class EnemyManagement {
         else if(roundManageTime>31000&&roundManageTime<38000) stageRound = 5;
         else if(stageRound==5&&roundManageTime>38000&&roundManageTime<40000) stageRound = 6;
     }
-    public static void enemyManagementStop(){
+    public void enemyManagementStop(){
         timeline.stop();
     }
 }

@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 
 public class HowToPlayScreen extends Stage{
     static Image HowToPlayImage = new Image(Paths.get("InvadersImage/UI/HowToPlayScreen.png").toUri().toString());
-
+    static PlayClip se = new PlayClip("InvadersMusic/cursorSE.wav");
     public  Stage startScreen;
     public  Pane root;
 
@@ -21,7 +21,7 @@ public class HowToPlayScreen extends Stage{
 
         //Stage設定、タイトル、大きさ
         setTitle("シューティングゲーム(仮)");
-        setWidth(1080);
+        setWidth(900);
         setHeight(720);
 
         root = new Pane();
@@ -41,7 +41,8 @@ public class HowToPlayScreen extends Stage{
         show();
     }
     public void keyPress(KeyEvent event) {
-        System.out.println("test");
+        se.reset();
+        se.play();
         this.close();
         startScreen.show();
     }

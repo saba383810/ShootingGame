@@ -20,8 +20,6 @@ public class Main extends Stage {
 
     static Image backgroundImg1 = new Image(Paths.get("InvadersImage/UI/Stage1Background.jpg").toUri().toString());
     static Image stageUIImg= new Image(Paths.get("InvadersImage/UI/stageUI1.png").toUri().toString());
-    static PlayClip stage1BGM = new PlayClip("InvadersMusic/stage1.wav");
-    static PlayClip boss1BGM = new PlayClip("InvadersMusic/boss1.wav");
     static PlayClip boss2BGM = new PlayClip("InvadersMusic/boss2.wav");
     static PlayClip stage2BGM = new PlayClip("InvadersMusic/stage2.wav");
     static boolean[] isGetKeyCode = new boolean[6];
@@ -38,11 +36,14 @@ public class Main extends Stage {
     public static BossHealth bossHealth;
     public static ArrayList<ImageView> bulletList = new ArrayList<>();
     public static ArrayList<ImageView> enemyBulletList = new ArrayList<>();
+    public static ArrayList<Enemy> enemyList = new ArrayList<>();
 
     public static GameOver gameOver;
     public static EnemyManagement eneMane;
 
     ImageView stageUI;
+    Boss boss;
+    boolean isBoss = false;
 
 
     public Main(Stage stage)  {
@@ -130,13 +131,18 @@ public class Main extends Stage {
     public void addEnemy(int actNum){
         Enemy enemy = new Enemy(actNum,this);
         root.getChildren().add(enemy);
+        enemyList.add(enemy);
     }
     public void addBoss(){
-        Boss boss = new Boss(this);
+        boss = new Boss(this);
         root.getChildren().add(boss);
+        isBoss=true;
+
+
+    }
+    public void addBossHealth(){
         bossHealth = new BossHealth();
         root.getChildren().add(bossHealth);
-
     }
 
     //取得したスコア分スコアを増加
@@ -150,23 +156,27 @@ public class Main extends Stage {
     public  ArrayList getEnemyBulletList(){return enemyBulletList;}
 
     public void gameOver(){
+        for(Enemy enemy :enemyList){
+            enemy.enemyStop();
+        }
+        if(isBoss) boss.bossStop();
         this.close();
         player.playerStop();
-        stage1BGM.stop();
-        boss1BGM.stop();
         stage2BGM.stop();
         boss2BGM.stop();
-        EnemyManagement.enemyManagementStop();
+        eneMane.enemyManagementStop();
         gameOver = new GameOver(startScreen,score,false);
     }
     public void stageClear(){
+        for(Enemy enemy :enemyList){
+            enemy.enemyStop();
+        }
+        if(isBoss) boss.bossStop();
         this.close();
+        eneMane.enemyManagementStop();
         player.playerStop();
-        stage1BGM.stop();
-        boss1BGM.stop();
         stage2BGM.stop();
         boss2BGM.stop();
-        EnemyManagement.enemyManagementStop();
         gameOver = new GameOver(startScreen,score,true);
 
     }

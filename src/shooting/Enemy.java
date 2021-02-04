@@ -98,4 +98,7 @@ public class Enemy extends ImageView {
             timeline.stop();
         }
     }
+    public void enemyStop(){
+        timeline.stop();
+    }
 }

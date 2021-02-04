@@ -98,14 +98,12 @@ public class GameOver extends Stage{
         scoreLabel.setFont(Font.font(50));
         Color c = Color.web("bed7de",1.0);
         scoreLabel.setTextFill(c);
-        scoreLabel.setTextFill(Color.WHITE);;
         scoreLabel.setTranslateX(300);
         scoreLabel.setTranslateY(520);
 
         highScoreLabel = new Label(highScore);
         highScoreLabel.setFont(Font.font(50));
         highScoreLabel.setTextFill(c);
-        highScoreLabel.setTextFill(Color.WHITE);;
         highScoreLabel.setTranslateX(300);
         highScoreLabel.setTranslateY(420);
 
